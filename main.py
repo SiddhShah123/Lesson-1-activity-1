@@ -10,3 +10,6 @@ print("Python is used in many fields like web development, data science, machine
 print("I am grateful for the opportunity to learn Python")
 print("I will practice Python every day to improve my skills")
 print("I am confident that I will succeed in my Python journey")
+print("This is a new line added directly in github which I want to sync")
+print("This is another new line added directly in github which I want to sync")
+
