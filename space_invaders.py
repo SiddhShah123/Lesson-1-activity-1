@@ -2,8 +2,8 @@ import pygame
 import random
 import math
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 500
-PLAYER_START_Y = 370
+SCREEN_HEIGHT = 800
+PLAYER_START_Y = 700
 PLAYER_START_X = 380
 ENEMY_START_Y_MIN = 50
 ENEMY_START_Y_MAX = 150
@@ -13,20 +13,23 @@ BULLET_SPEED_Y = 10
 COLLSION_DISTANCE = 27
 
 pygame.init()
+pygame.mixer.music.load('back_music.wav')
+pygame.mixer.music.play(-1)
+
 screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 bg = pygame.image.load("space_bg.png")
+bg_scale = pygame.transform.scale(bg,(SCREEN_WIDTH,SCREEN_HEIGHT))
 pygame.display.set_caption("Space Invaders")
 icon = pygame.image.load("UFO.png")
 pygame.display.set_icon(icon)
 
-playerimg = pygame.image.load("spaceship.png")
+playerimg = pygame.image.load("spaceship2.png")
 playerimg_scale = pygame.transform.scale(playerimg,(75,75))
 playerX = PLAYER_START_X
 playerY =  PLAYER_START_Y
 playerX_change = 0 
 
 enemyimg = []
-
 enemyX = []
 enemyY = []
 enemyX_change = []
@@ -34,7 +37,7 @@ enemyY_change = []
 number_of_enemies = 6 
 
 for i in range(number_of_enemies):
-    enemyimg_new =  pygame.image.load('UFO.png')
+    enemyimg_new =  pygame.image.load('alien_spaceship.png')
     enemyimg_scale = pygame.transform.scale(enemyimg_new,(50,50))
     enemyimg.append(enemyimg_scale) 
     enemyX.append(random.randint(0,SCREEN_WIDTH - 64 )) 
@@ -43,6 +46,7 @@ for i in range(number_of_enemies):
     enemyY_change.append(ENEMY_SPEED_Y) 
 
 bulletimg = pygame.image.load("fire_bullet.png")
+bulletimg_scale = pygame.transform.scale(bulletimg,(30,30))
 bulletX = 0 
 bulletY = PLAYER_START_Y
 bulletX_change = 0 
@@ -60,7 +64,8 @@ def show_score(x,y):
     screen.blit(score,(x,y))
 
 def game_over_text():
-    over_text = over_font.render("GAME OVER",True,(255,255,255))
+    pygame.mixer.music.pause()
+    over_text = over_font.render("GAME OVER!!!",True,(255,255,255))
     screen.blit(over_text,(200,250))
 
 def player(x,y):
@@ -72,7 +77,7 @@ def enemy(x,y,i):
 def fire_bullet(x,y):
     global bullet_state
     bullet_state = "fire"
-    screen.blit(bulletimg,(x+16,y+10)) 
+    screen.blit(bulletimg_scale,(x+16,y+10)) 
 
 def iscollision(enemyX ,enemyY,bulletX ,bulletY):
     distance = math.sqrt((enemyX  - bulletX )**2+(enemyY - bulletY)**2)
@@ -81,7 +86,7 @@ def iscollision(enemyX ,enemyY,bulletX ,bulletY):
 running = True 
 while running:
     screen.fill((0,0,0))
-    screen.blit(bg,(0,0))
+    screen.blit(bg_scale,(0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -100,9 +105,8 @@ while running:
     playerX = max(0,min(playerX,SCREEN_WIDTH - 64))
 
     for i in range(number_of_enemies):
-        if enemyY[i]> 340:
-            for j in range(number_of_enemies):
-                enemyY[j]== 2000              
+        if enemyY[i]> 625:
+                        
 
             game_over_text()
             break 
