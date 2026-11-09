@@ -26,4 +26,4 @@ button = Button(root, text="Check Routine", command=show_warning)
 button.pack(pady=10)
 button.bind("<Button-1>", handle_click)
 
-root.mainloop()
+root.mainloop()  
