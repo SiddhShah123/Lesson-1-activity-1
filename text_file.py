@@ -20,6 +20,7 @@ def open_file():
 		input_file.close()
 	window.title(f"Codingal's Text Editor - {filepath}")
 
+
 def save_file():
 	filepath = asksaveasfilename(
 		defaultextension="txt",
