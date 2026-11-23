@@ -70,13 +70,7 @@ def topwin():
     remaining_label.place(x=80, y=275)
     remaining_entry.place(x=280, y=275)
  
-start_button = Button(
-    root,
-    text="Create My Reading Plan",
-    command=topwin,
-    bg="#1261A0",
-    fg="white"
-)
+start_button = Button(root,text="Create My Reading Plan",command=topwin,bg="#1261A0",fg="white")
 start_button.pack(pady=15)
  
 root.mainloop()
